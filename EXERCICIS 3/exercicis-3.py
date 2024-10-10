@@ -2,26 +2,20 @@
 #  ha pasado hasta ahora, en horas, minutos y segundos.
 
 import random
-from datetime import datetime
+from datetime import datetime, timedelta
 
-hoy = ""
-hora = random.randrange(0,24)
-minutos = random.randrange(0,60)
-segundos = random.randrange(0,60)
 
-hora_string = str(hora)
-minutos_string = str(minutos)
-segundos_string = str(segundos)
+hora_aleatoria = datetime.now().replace(hour=random.randint(0, 23), minute=random.randint(0, 59), second=random.randint(0, 59))
+hora_actual = datetime.now()
 
-hora_al_azar = hora_string + ":" + minutos_string + ":" + segundos_string
+diferencia = hora_actual - hora_aleatoria
 
-hora_desarrollada = datetime.strptime(hora_al_azar, "%H:%M:%S").time()
+horas = diferencia.seconds // 3600
+minutos = (diferencia.seconds % 3600) // 60
+segundos = diferencia.seconds % 60
 
-current_dateTime = datetime.now()
-
-print(current_dateTime)
-
-print(hoy)
+print("Hora aleatoria generada:", hora_aleatoria.time())
+print(f"Tiempo transcurrido desde entonces: {horas} horas, {minutos} minutos y {segundos} segundos.")
 
 
 
